@@ -7,12 +7,10 @@ package prin;
 
 import config.Conexion;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,13 +19,12 @@ import javax.swing.table.DefaultTableModel;
 public class LoginAdministrador extends javax.swing.JFrame {
 
     Conexion conAdmin1= new Conexion();
-    Connection conet;
-    DefaultTableModel modelo;
-    Statement st;
-    ResultSet rs;
     public LoginAdministrador() {
         initComponents();
     }
+    
+     private Connection connection = conAdmin1.getConnection();
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -132,11 +129,13 @@ public class LoginAdministrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        LoginAdministrador admin = new LoginAdministrador();
-     String consul = admin.consultarAdmin(txtUsuario.getText());
+    
+        String consul = consultarAdmin(txtUsuario.getText());
+        String pass = consultarAdminContraseña(txtContrasena.getText());
      
       
-        if(txtUsuario.getText().equals(consul)){
+        if(txtUsuario.getText().equalsIgnoreCase(consul) 
+                && txtContrasena.getText().equals(pass)){
             
         PanelAdmin paneladmin = new PanelAdmin();
         paneladmin.setVisible(true);
@@ -186,23 +185,42 @@ public class LoginAdministrador extends javax.swing.JFrame {
             }
         });
     }
-    String consultarAdmin(String documen) {
-    String sql = "select u.documento from usuarios u where u.documento = '" + documen + "'";
-    try {
-        conet = conAdmin1.getConnection();
-        st = conet.createStatement();
-        rs = st.executeQuery(sql);
-        
-        if (rs.next()) {
-            String documento = rs.getString("documento");
-            return documento;
+  String consultarAdmin(String nom) {
+    String sql = "SELECT u.nombre FROM \"PI2\".usuarios u WHERE nombre = ?";
+    try (
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)
+    ) {
+        preparedStatement.setString(1, nom);
+        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getString("nombre");
+            }
         }
-    } catch (Exception e) {
-    } finally {
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
-    
     return null;
 }
+
+String consultarAdminContraseña(String password) {
+    String sql = "SELECT u.contraseña FROM \"PI2\".usuarios u WHERE u.contraseña = ?";
+    try (
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)
+    ) {
+        preparedStatement.setString(1, password);
+        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getString("contraseña");
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return null;
+}
+
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
