@@ -213,8 +213,7 @@ public class LoginAdministrador extends javax.swing.JFrame {
 }
 
 String consultarAdminContraseña(String password) {
-  
-    String sql = "SELECT pgp_sym_decrypt(contraseña::bytea, 'integrador2') AS contraseña FROM \"PI2\".usuarios WHERE nombre = ?";
+    String sql = "SELECT u.contraseña FROM \"PI2\".usuarios u WHERE u.contraseña = ?";
     try (
         PreparedStatement preparedStatement = connection.prepareStatement(sql)
     ) {
