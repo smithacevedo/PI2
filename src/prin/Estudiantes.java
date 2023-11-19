@@ -294,7 +294,7 @@ public class Estudiantes extends javax.swing.JFrame {
     }//GEN-LAST:event_LimpiarActionPerformed
 
     private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
-        PanelAdmin paneladmin = new PanelAdmin();
+        PanelPrincipal paneladmin = new PanelPrincipal();
         paneladmin.setVisible(true);
         dispose();
     }//GEN-LAST:event_RegresarActionPerformed
