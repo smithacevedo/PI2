@@ -7,7 +7,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class Profesores extends javax.swing.JFrame {
+public class Compras extends javax.swing.JFrame {
     
     Conexion conProfesores1= new Conexion();
     Connection conet;
@@ -16,7 +16,7 @@ public class Profesores extends javax.swing.JFrame {
     ResultSet rs;
     int idc;
 
-    public Profesores() {
+    public Compras() {
         initComponents();
         setLocationRelativeTo(null);
         consultar();
@@ -28,14 +28,14 @@ public class Profesores extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtDocumento = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
-        txtApellido = new javax.swing.JTextField();
-        txtTelefono = new javax.swing.JTextField();
+        Compras = new javax.swing.JLabel();
+        FechaC = new javax.swing.JLabel();
+        Proveedor = new javax.swing.JLabel();
+        Total = new javax.swing.JLabel();
+        txtCompras = new javax.swing.JTextField();
+        txtFechaC = new javax.swing.JTextField();
+        txtProveedor = new javax.swing.JTextField();
+        txtTotal = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         Agregar = new javax.swing.JButton();
         Modificar = new javax.swing.JButton();
@@ -48,27 +48,33 @@ public class Profesores extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Profesores");
+        jLabel1.setText("Compras");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
 
-        jLabel2.setText("Documento:");
+        Compras.setText("Compras:");
 
-        jLabel3.setText("Nombre:");
+        FechaC.setText("Fecha Compra:");
 
-        jLabel4.setText("Apellido:");
+        Proveedor.setText("Proveedor:");
 
-        jLabel5.setText("Teléfono:");
+        Total.setText("Total:");
 
-        txtDocumento.addActionListener(new java.awt.event.ActionListener() {
+        txtCompras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDocumentoActionPerformed(evt);
+                txtComprasActionPerformed(evt);
             }
         });
 
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+        txtFechaC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
+                txtFechaCActionPerformed(evt);
+            }
+        });
+
+        txtTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalActionPerformed(evt);
             }
         });
 
@@ -79,37 +85,37 @@ public class Profesores extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                    .addComponent(txtDocumento, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                    .addComponent(txtNombre)
-                    .addComponent(txtApellido))
+                    .addComponent(Proveedor)
+                    .addComponent(FechaC)
+                    .addComponent(Total)
+                    .addComponent(Compras))
+                .addGap(61, 61, 61)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFechaC, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Compras)
+                    .addComponent(txtCompras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(FechaC)
+                    .addComponent(txtFechaC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Proveedor)
+                    .addComponent(txtProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Total)
+                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -187,7 +193,7 @@ public class Profesores extends javax.swing.JFrame {
 
             },
             new String [] {
-                "documento", "nombre_profesor", "apellido_profesor", "telefono"
+                "Compras", "Fecha Compra", "Proveedor ", "Total"
             }
         ));
         Tabla.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -203,7 +209,7 @@ public class Profesores extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -219,16 +225,16 @@ public class Profesores extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(301, 301, 301))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(239, 239, 239)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,37 +253,18 @@ public class Profesores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocumentoActionPerformed
+    private void txtComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtComprasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDocumentoActionPerformed
+    }//GEN-LAST:event_txtComprasActionPerformed
 
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+    private void txtFechaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaCActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
+    }//GEN-LAST:event_txtFechaCActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         Agregar();
         consultar();
     }//GEN-LAST:event_AgregarActionPerformed
-
-    private void TablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMouseClicked
-        int fila = Tabla.getSelectedRow();
-        if (fila == -1){
-            
-            JOptionPane.showMessageDialog(null, "No se seleccionó ninguna fila");
-        } else{
-            int doc = Integer.parseInt((String) Tabla.getValueAt(fila, 0) .toString());
-            String nom = (String) Tabla.getValueAt(fila, 1);
-            String ape = (String) Tabla.getValueAt(fila, 2);
-            String tel = (String) Tabla.getValueAt(fila, 3);
-            
-           
-            txtDocumento.setText(""+ doc);
-            txtNombre.setText(nom);
-            txtApellido.setText(ape);
-            txtTelefono.setText(tel);
-        }
-    }//GEN-LAST:event_TablaMouseClicked
 
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
         Modificar();
@@ -299,11 +286,33 @@ public class Profesores extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_RegresarActionPerformed
 
+    private void TablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMouseClicked
+        int fila = Tabla.getSelectedRow();
+        if (fila == -1){
+
+            JOptionPane.showMessageDialog(null, "No se seleccionó ninguna fila");
+        } else{
+            int doc = Integer.parseInt((String) Tabla.getValueAt(fila, 0) .toString());
+            String nom = (String) Tabla.getValueAt(fila, 1);
+            String ape = (String) Tabla.getValueAt(fila, 2);
+            String tel = (String) Tabla.getValueAt(fila, 3);
+
+            txtCompras.setText(""+ doc);
+            txtFechaC.setText(nom);
+            txtProveedor.setText(ape);
+            txtTotal.setText(tel);
+        }
+    }//GEN-LAST:event_TablaMouseClicked
+
+    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalActionPerformed
+
     public void Modificar(){
-        String doc = txtDocumento.getText();
-        String nom = txtNombre.getText();
-        String ape = txtApellido.getText();
-        String tel = txtTelefono.getText();
+        String doc = txtCompras.getText();
+        String nom = txtFechaC.getText();
+        String ape = txtProveedor.getText();
+        String tel = txtTotal.getText();
         
         try {
             if (doc.equals("") || nom.equals("") || ape.equals("") || tel.equals("")){
@@ -339,13 +348,13 @@ public class Profesores extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Profesores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Compras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Profesores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Compras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Profesores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Compras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Profesores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Compras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -355,7 +364,7 @@ public class Profesores extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Profesores().setVisible(true);
+                new Compras().setVisible(true);
             }
         });
     }
@@ -385,10 +394,10 @@ public class Profesores extends javax.swing.JFrame {
     }
     
     void Agregar(){
-        String doc = txtDocumento.getText();
-        String nom = txtNombre.getText();
-        String ape = txtApellido.getText();
-        String tel = txtTelefono.getText();
+        String doc = txtCompras.getText();
+        String nom = txtFechaC.getText();
+        String ape = txtProveedor.getText();
+        String tel = txtTotal.getText();
         
         try {
             if (doc.equals("") || nom.equals("") || ape.equals("") || tel.equals("")){
@@ -415,7 +424,7 @@ public class Profesores extends javax.swing.JFrame {
     }
     
     public void Eliminar() {
-    String doc = txtDocumento.getText();
+    String doc = txtCompras.getText();
 
     try {
         if (doc.equals("")) {
@@ -434,32 +443,32 @@ public class Profesores extends javax.swing.JFrame {
 }
     
     void Limpiar(){
-        txtDocumento.setText("");
-        txtNombre.setText("");
-        txtApellido.setText("");
-        txtTelefono.setText("");
+        txtCompras.setText("");
+        txtFechaC.setText("");
+        txtProveedor.setText("");
+        txtTotal.setText("");
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
+    private javax.swing.JLabel Compras;
     private javax.swing.JButton Eliminar;
+    private javax.swing.JLabel FechaC;
     private javax.swing.JButton Limpiar;
     private javax.swing.JButton Modificar;
+    private javax.swing.JLabel Proveedor;
     private javax.swing.JButton Regresar;
     private javax.swing.JTable Tabla;
+    private javax.swing.JLabel Total;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtDocumento;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtCompras;
+    private javax.swing.JTextField txtFechaC;
+    private javax.swing.JTextField txtProveedor;
+    private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }
