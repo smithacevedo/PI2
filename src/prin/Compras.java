@@ -7,7 +7,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class Compras extends javax.swing.JFrame {
+public class  Compras extends javax.swing.JFrame {
     
     Conexion conProfesores1= new Conexion();
     Connection conet;
