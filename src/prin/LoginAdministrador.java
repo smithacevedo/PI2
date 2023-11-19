@@ -143,7 +143,7 @@ public class LoginAdministrador extends javax.swing.JFrame {
         if(txtUsuario.getText().equalsIgnoreCase(consul) 
                 && jPasswordField1.getText().equals(pass)){
             
-        PanelAdmin paneladmin = new PanelAdmin();
+        PanelPrincipal paneladmin = new PanelPrincipal();
         paneladmin.setVisible(true);
         dispose();    
         } else {
