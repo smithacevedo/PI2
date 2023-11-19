@@ -4,6 +4,7 @@ import config.Conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,6 +24,7 @@ public class Usuarios extends javax.swing.JFrame {
         consultar();
     }
     
+    LocalDateTime datetime = LocalDateTime.now();
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -37,11 +39,12 @@ public class Usuarios extends javax.swing.JFrame {
         Rol = new javax.swing.JLabel();
         txtRol = new javax.swing.JTextField();
         Contraseña = new javax.swing.JLabel();
-        txtContrasena = new javax.swing.JTextField();
-        Estado = new javax.swing.JLabel();
+        txtContraseña = new javax.swing.JTextField();
         FechaIngreso = new javax.swing.JLabel();
         CheckActivo = new javax.swing.JCheckBox();
         txtFecha = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        Rol1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         AGREGAR = new javax.swing.JButton();
         ELIMINAR = new javax.swing.JButton();
@@ -65,8 +68,6 @@ public class Usuarios extends javax.swing.JFrame {
 
         Contraseña.setText("Contraseña:");
 
-        Estado.setText("Estado:");
-
         FechaIngreso.setText("Fecha De Ingreso:");
 
         CheckActivo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -77,35 +78,47 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
 
+        txtFecha.setEditable(false);
+
+        jLabel2.setText("(Este campo se registra automáticamente)");
+
+        Rol1.setText("Estado:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(FechaIngreso)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Documento)
-                            .addComponent(Nombre)
-                            .addComponent(Contraseña)
-                            .addComponent(Rol)
-                            .addComponent(Estado))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Documento)
+                                    .addComponent(Nombre)
+                                    .addComponent(Contraseña)
+                                    .addComponent(Rol)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(Rol1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRol, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addComponent(CheckActivo)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtRol, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(FechaIngreso)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(CheckActivo)))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,20 +134,21 @@ public class Usuarios extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Contraseña)
-                    .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Rol, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtRol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CheckActivo)
-                    .addComponent(Estado))
-                .addGap(18, 18, 18)
+                .addComponent(Rol1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CheckActivo)
+                .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(FechaIngreso)
-                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Operaciones"));
@@ -227,14 +241,14 @@ public class Usuarios extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -244,13 +258,13 @@ public class Usuarios extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(29, 29, 29)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addContainerGap())
         );
 
         pack();
@@ -282,8 +296,25 @@ public class Usuarios extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(null, "No se seleccionó ninguna fila");
         } else{
-            txtIdUsuario.setText(String.valueOf(modelo.getValueAt(fila, 0)));
-            txtNombre.setText((String) modelo.getValueAt(fila, 1));
+            
+            int usuario = Integer.parseInt((String) Tabla.getValueAt(fila, 0) .toString());
+            String nombre = (String) Tabla.getValueAt(fila, 1);
+            String contraseña = (String) Tabla.getValueAt(fila, 2);
+            String rol = (String) Tabla.getValueAt(fila, 3);
+            String estado =  Tabla.getValueAt(fila, 4).toString();
+            String fecha_ingreso =  Tabla.getValueAt(fila, 5).toString();
+            
+            
+            txtIdUsuario.setText(""+ usuario);
+            txtNombre.setText(nombre);
+            txtContraseña.setText(contraseña);
+            txtRol.setText(rol);
+            if (estado.equals("true")) {
+            CheckActivo.setSelected(true); // Marcado
+            } else {
+            CheckActivo.setSelected(false); // No marcado
+            }
+            txtFecha.setText(fecha_ingreso);
             
         }
     }//GEN-LAST:event_TablaMouseClicked
@@ -335,13 +366,15 @@ public class Usuarios extends javax.swing.JFrame {
             conet = conUsuarios1.getConnection();
             st = conet.createStatement();
             rs = st.executeQuery(sql);
-            Object[] usuario = new Object[4];
+            Object[] usuario = new Object[6];
             modelo = (DefaultTableModel) Tabla.getModel();
             while (rs.next()){
-                usuario [0] = rs.getInt("documento");
+                usuario [0] = rs.getInt("usuarioid");
                 usuario [1] = rs.getString("nombre");
-                usuario [2] = rs.getString("contrasena");
+                usuario [2] = rs.getString("contraseña");
                 usuario [3] = rs.getString("rol");
+                usuario [4] = rs.getBoolean("estado");
+                usuario [5] = rs.getDate("fecha_ingreso");
                 
                 modelo.addRow(usuario);
             }
@@ -353,15 +386,19 @@ public class Usuarios extends javax.swing.JFrame {
     }
     
     void Agregar(){
-        String doc = txtIdUsuario.getText();
-        String con = txtNombre.getText();
+        String usuario = txtIdUsuario.getText();
+        String nombre = txtNombre.getText();
+        String contraseña = txtContraseña.getText();
+        String rol = txtRol.getText();
+        boolean estado = CheckActivo.isSelected();
+        LocalDateTime fecha = datetime;
         
         try {
-            if (doc.equals("") || con.equals("")){
+            if (usuario.equals("") || nombre.equals("")|| contraseña.equals("")|| rol.equals("")){
                 JOptionPane.showMessageDialog(null, "Faltan ingresar datos");
             } else {
                 
-                String sql = "INSERT INTO usuarios(documento, contrasena) VALUES ('"+doc+"', '"+con+"')";
+                String sql = "INSERT INTO \"PI2\".usuarios(usuarioid, nombre, contraseña, rol, estado, fecha_ingreso) VALUES ('"+usuario+"', '"+nombre+"', '"+contraseña+"', '"+rol+"', '"+estado+"', '"+fecha+"')";
             conet = conUsuarios1.getConnection();
             st = conet.createStatement();
             st.executeUpdate(sql);
@@ -374,13 +411,13 @@ public class Usuarios extends javax.swing.JFrame {
     }
     
     public void Eliminar() {
-    String doc = txtIdUsuario.getText();
+    String usuario = txtIdUsuario.getText();
 
     try {
-        if (doc.equals("")) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar el documento");
+        if (usuario.equals("")) {
+            JOptionPane.showMessageDialog(null, "Falta ingresar el id del usuario");
         } else {
-            String sql = "DELETE FROM usuarios WHERE documento = '" + doc + "'";
+            String sql = "DELETE FROM \"PI2\".usuarios WHERE usuarioid = '" + usuario + "'";
 
             conet = conUsuarios1.getConnection();
             st = conet.createStatement();
@@ -402,7 +439,7 @@ public class Usuarios extends javax.swing.JFrame {
     void Limpiar(){
         txtIdUsuario.setText("");
         txtNombre.setText("");
-        txtContrasena.setText("");
+        txtContraseña.setText("");
         txtRol.setText("");
         CheckActivo.setSelected(false);
         txtFecha.setText("");
@@ -414,19 +451,20 @@ public class Usuarios extends javax.swing.JFrame {
     private javax.swing.JLabel Contraseña;
     private javax.swing.JLabel Documento;
     private javax.swing.JButton ELIMINAR;
-    private javax.swing.JLabel Estado;
     private javax.swing.JLabel FechaIngreso;
     private javax.swing.JButton NUEVO;
     private javax.swing.JLabel Nombre;
     private javax.swing.JButton Regresar;
     private javax.swing.JLabel Rol;
+    private javax.swing.JLabel Rol1;
     private javax.swing.JTable Tabla;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField txtContrasena;
+    private javax.swing.JTextField txtContraseña;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtIdUsuario;
     private javax.swing.JTextField txtNombre;
