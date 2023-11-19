@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import prin.PanelAdmin;
-import prin.PanelAdmin;
+import prin.PanelPrincipal;
+import prin.PanelPrincipal;
 
 public class Proveedores extends javax.swing.JFrame {
     
@@ -283,7 +283,7 @@ public class Proveedores extends javax.swing.JFrame {
     }//GEN-LAST:event_LIMPIARActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        PanelAdmin paneladmin = new PanelAdmin();
+        PanelPrincipal paneladmin = new PanelPrincipal();
         paneladmin.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
