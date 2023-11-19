@@ -31,15 +31,15 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         Documento = new javax.swing.JLabel();
-        Contraseña = new javax.swing.JLabel();
+        Nombre = new javax.swing.JLabel();
         txtIdUsuario = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        Contraseña1 = new javax.swing.JLabel();
+        Rol = new javax.swing.JLabel();
         txtRol = new javax.swing.JTextField();
-        Contraseña2 = new javax.swing.JLabel();
+        Contraseña = new javax.swing.JLabel();
         txtContrasena = new javax.swing.JTextField();
-        Contraseña3 = new javax.swing.JLabel();
-        Contraseña4 = new javax.swing.JLabel();
+        Estado = new javax.swing.JLabel();
+        FechaIngreso = new javax.swing.JLabel();
         CheckActivo = new javax.swing.JCheckBox();
         txtFecha = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
@@ -59,18 +59,23 @@ public class Usuarios extends javax.swing.JFrame {
 
         Documento.setText("Id Usuario:");
 
-        Contraseña.setText("Nombre:");
+        Nombre.setText("Nombre:");
 
-        Contraseña1.setText("Rol:");
+        Rol.setText("Rol:");
 
-        Contraseña2.setText("Contraseña:");
+        Contraseña.setText("Contraseña:");
 
-        Contraseña3.setText("Estado:");
+        Estado.setText("Estado:");
 
-        Contraseña4.setText("Fecha De Ingreso:");
+        FechaIngreso.setText("Fecha De Ingreso:");
 
         CheckActivo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         CheckActivo.setText("ACTIVO");
+        CheckActivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckActivoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -80,16 +85,16 @@ public class Usuarios extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(Contraseña4)
+                        .addComponent(FechaIngreso)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Documento)
+                            .addComponent(Nombre)
                             .addComponent(Contraseña)
-                            .addComponent(Contraseña2)
-                            .addComponent(Contraseña1)
-                            .addComponent(Contraseña3))
+                            .addComponent(Rol)
+                            .addComponent(Estado))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -111,23 +116,23 @@ public class Usuarios extends javax.swing.JFrame {
                     .addComponent(txtIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Contraseña)
+                    .addComponent(Nombre)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Contraseña2)
+                    .addComponent(Contraseña)
                     .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Contraseña1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Rol, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtRol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CheckActivo)
-                    .addComponent(Contraseña3))
+                    .addComponent(Estado))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Contraseña4)
+                    .addComponent(FechaIngreso)
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19))
         );
@@ -191,7 +196,7 @@ public class Usuarios extends javax.swing.JFrame {
 
             },
             new String [] {
-                "usuarioid", "nombre", "contrasena", "rol", "estado", "fecha_ingreso"
+                "usuarioid", "nombre", "contraseña", "rol", "estado", "fecha_ingreso"
             }
         ));
         Tabla.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -277,14 +282,15 @@ public class Usuarios extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(null, "No se seleccionó ninguna fila");
         } else{
-            int doc = Integer.parseInt((String) Tabla.getValueAt(fila, 0) .toString());
-            String con = (String) Tabla.getValueAt(fila, 1);
+            txtIdUsuario.setText(String.valueOf(modelo.getValueAt(fila, 0)));
+            txtNombre.setText((String) modelo.getValueAt(fila, 1));
             
-           
-            txtIdUsuario.setText(""+ doc);
-            txtNombre.setText(con);
         }
     }//GEN-LAST:event_TablaMouseClicked
+
+    private void CheckActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckActivoActionPerformed
+        boolean estaChuleado = CheckActivo.isSelected();
+    }//GEN-LAST:event_CheckActivoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,17 +329,19 @@ public class Usuarios extends javax.swing.JFrame {
     }
     
     void consultar(){
-        String sql = "select * from usuarios";
+        String sql = "SELECT * FROM \"PI2\".usuarios";
         
         try {
             conet = conUsuarios1.getConnection();
             st = conet.createStatement();
             rs = st.executeQuery(sql);
-            Object[] usuario = new Object[2];
+            Object[] usuario = new Object[4];
             modelo = (DefaultTableModel) Tabla.getModel();
             while (rs.next()){
                 usuario [0] = rs.getInt("documento");
-                usuario [1] = rs.getString("contrasena");
+                usuario [1] = rs.getString("nombre");
+                usuario [2] = rs.getString("contrasena");
+                usuario [3] = rs.getString("rol");
                 
                 modelo.addRow(usuario);
             }
@@ -394,20 +402,24 @@ public class Usuarios extends javax.swing.JFrame {
     void Limpiar(){
         txtIdUsuario.setText("");
         txtNombre.setText("");
+        txtContrasena.setText("");
+        txtRol.setText("");
+        CheckActivo.setSelected(false);
+        txtFecha.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AGREGAR;
     private javax.swing.JCheckBox CheckActivo;
     private javax.swing.JLabel Contraseña;
-    private javax.swing.JLabel Contraseña1;
-    private javax.swing.JLabel Contraseña2;
-    private javax.swing.JLabel Contraseña3;
-    private javax.swing.JLabel Contraseña4;
     private javax.swing.JLabel Documento;
     private javax.swing.JButton ELIMINAR;
+    private javax.swing.JLabel Estado;
+    private javax.swing.JLabel FechaIngreso;
     private javax.swing.JButton NUEVO;
+    private javax.swing.JLabel Nombre;
     private javax.swing.JButton Regresar;
+    private javax.swing.JLabel Rol;
     private javax.swing.JTable Tabla;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

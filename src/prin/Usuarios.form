@@ -78,17 +78,17 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="Contraseña4" min="-2" max="-2" attributes="0"/>
+                          <Component id="FechaIngreso" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="txtFecha" min="-2" pref="174" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="Documento" min="-2" max="-2" attributes="0"/>
+                              <Component id="Nombre" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="Contraseña" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="Contraseña2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="Contraseña1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="Contraseña3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="Rol" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="Estado" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -118,27 +118,27 @@
                   </Group>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Contraseña" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Nombre" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Contraseña2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Contraseña" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtContrasena" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="Contraseña1" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="Rol" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="txtRol" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="CheckActivo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Contraseña3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Estado" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Contraseña4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="FechaIngreso" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
@@ -152,7 +152,7 @@
             <Property name="text" type="java.lang.String" value="Id Usuario:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="Contrase&#xf1;a">
+        <Component class="javax.swing.JLabel" name="Nombre">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre:"/>
           </Properties>
@@ -161,26 +161,26 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombre">
         </Component>
-        <Component class="javax.swing.JLabel" name="Contrase&#xf1;a1">
+        <Component class="javax.swing.JLabel" name="Rol">
           <Properties>
             <Property name="text" type="java.lang.String" value="Rol:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtRol">
         </Component>
-        <Component class="javax.swing.JLabel" name="Contrase&#xf1;a2">
+        <Component class="javax.swing.JLabel" name="Contrase&#xf1;a">
           <Properties>
             <Property name="text" type="java.lang.String" value="Contrase&#xf1;a:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtContrasena">
         </Component>
-        <Component class="javax.swing.JLabel" name="Contrase&#xf1;a3">
+        <Component class="javax.swing.JLabel" name="Estado">
           <Properties>
             <Property name="text" type="java.lang.String" value="Estado:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="Contrase&#xf1;a4">
+        <Component class="javax.swing.JLabel" name="FechaIngreso">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fecha De Ingreso:"/>
           </Properties>
@@ -192,6 +192,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="ACTIVO"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckActivoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtFecha">
         </Component>
@@ -309,7 +312,7 @@
                   <Table columnCount="6" rowCount="0">
                     <Column editable="true" title="usuarioid" type="java.lang.Object"/>
                     <Column editable="true" title="nombre" type="java.lang.Object"/>
-                    <Column editable="true" title="contrasena" type="java.lang.Object"/>
+                    <Column editable="true" title="contrase&#xf1;a" type="java.lang.Object"/>
                     <Column editable="true" title="rol" type="java.lang.Object"/>
                     <Column editable="true" title="estado" type="java.lang.Object"/>
                     <Column editable="true" title="fecha_ingreso" type="java.lang.Object"/>
