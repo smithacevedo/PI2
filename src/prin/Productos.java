@@ -1,26 +1,29 @@
 package prin;
 
 import config.Conexion;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Estudiantes extends javax.swing.JFrame {
-    
-    Conexion con1= new Conexion();
-    Connection conet;
+public class Productos extends javax.swing.JFrame {
+
     DefaultTableModel modelo;
     Statement st;
     ResultSet rs;
-    int idc;
 
-    public Estudiantes() {
+    public Productos() {
         initComponents();
-        setLocationRelativeTo(null);
-        consultarEstudiantes();
+
     }
+
+    Conexion conAdmin1 = new Conexion();
+
+    private final Connection connection = conAdmin1.getConnection();
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -32,10 +35,12 @@ public class Estudiantes extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtDocumento = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        txtApellido = new javax.swing.JTextField();
-        txtTelefono = new javax.swing.JTextField();
+        txtDescri = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtCantidad = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         Agregar = new javax.swing.JButton();
         Modificar = new javax.swing.JButton();
@@ -48,21 +53,21 @@ public class Estudiantes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Estudiantes");
+        jLabel1.setText("Productos");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
 
-        jLabel2.setText("Documento:");
+        jLabel2.setText("Productoid");
 
         jLabel3.setText("Nombre:");
 
-        jLabel4.setText("Apellido:");
+        jLabel4.setText("Descripción");
 
-        jLabel5.setText("Teléfono:");
+        jLabel5.setText("precio");
 
-        txtDocumento.addActionListener(new java.awt.event.ActionListener() {
+        txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDocumentoActionPerformed(evt);
+                txtIdActionPerformed(evt);
             }
         });
 
@@ -71,6 +76,8 @@ public class Estudiantes extends javax.swing.JFrame {
                 txtNombreActionPerformed(evt);
             }
         });
+
+        jLabel6.setText("Cantidad");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,22 +89,25 @@ public class Estudiantes extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                    .addComponent(txtDocumento, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                    .addComponent(txtNombre)
-                    .addComponent(txtApellido))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addGap(193, 193, 193)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDescri, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -105,11 +115,15 @@ public class Estudiantes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDescri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -187,7 +201,7 @@ public class Estudiantes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "documento", "nombre_estudiante", "apellido_estudiante", "telefono"
+                "Productoid", "Nombre", "Descripción", "Precio", "cantidad"
             }
         ));
         Tabla.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -236,57 +250,49 @@ public class Estudiantes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocumentoActionPerformed
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDocumentoActionPerformed
+    }//GEN-LAST:event_txtIdActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        Agregar();
-        consultarEstudiantes();
+        agregarProducto();
+        consultarProductos();
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void TablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMouseClicked
         int fila = Tabla.getSelectedRow();
-        if (fila == -1){
-            
-            JOptionPane.showMessageDialog(null, "No se seleccionó ninguna fila");
-        } else{
-            int doc = Integer.parseInt((String) Tabla.getValueAt(fila, 0) .toString());
-            String nom = (String) Tabla.getValueAt(fila, 1);
-            String ape = (String) Tabla.getValueAt(fila, 2);
-            String tel = (String) Tabla.getValueAt(fila, 3);
-            
-           
-            txtDocumento.setText(""+ doc);
-            txtNombre.setText(nom);
-            txtApellido.setText(ape);
-            txtTelefono.setText(tel);
+        if (fila != -1) {
+            txtId.setText(String.valueOf(modelo.getValueAt(fila, 0)));
+            txtNombre.setText((String) modelo.getValueAt(fila, 1));
+            txtDescri.setText((String) modelo.getValueAt(fila, 2));
+            txtPrecio.setText(String.valueOf(modelo.getValueAt(fila, 3)));
+            txtCantidad.setText(String.valueOf(modelo.getValueAt(fila, 4)));
         }
     }//GEN-LAST:event_TablaMouseClicked
 
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
-        Modificar();
-        consultarEstudiantes();
+        modificarProducto();
+        consultarProductos();
     }//GEN-LAST:event_ModificarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        Eliminar();
-        consultarEstudiantes();
+        eliminarProducto();
+        consultarProductos();
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarActionPerformed
@@ -299,29 +305,34 @@ public class Estudiantes extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_RegresarActionPerformed
 
-    public void Modificar(){
-        String doc = txtDocumento.getText();
+    void modificarProducto() {
+        String idProducto = txtId.getText();
         String nom = txtNombre.getText();
-        String ape = txtApellido.getText();
-        String tel = txtTelefono.getText();
-        
+        String descri = txtDescri.getText();
+        BigDecimal precio = new BigDecimal(txtPrecio.getText()); // Asumiendo que el precio es un número decimal
+        int cantidad = Integer.parseInt(txtCantidad.getText()); // Asumiendo que la cantidad es un número entero
+
         try {
-            if (doc.equals("") || nom.equals("") || ape.equals("") || tel.equals("")){
+            if (idProducto.equals("") || nom.equals("") || descri.equals("")) {
                 JOptionPane.showMessageDialog(null, "Faltan ingresar datos");
             } else {
-                
-                String sql = "UPDATE estudiantes SET documento = '" + doc + "', nombre_estudiante = '" + nom + "', apellido_estudiante = '" + ape + "', telefono = '" + tel + "' WHERE documento = '" + doc +"'";
+                // UPDATE con valores proporcionados
+                String sql = "UPDATE \"PI2\".productos SET nombre = '" + nom + "', descripción = '" + descri + "', precio = " + precio + ", cantidad = " + cantidad + " WHERE productoid = " + idProducto;
 
-            conet = con1.getConnection();
-            st = conet.createStatement();
-            st.executeUpdate(sql);
-               JOptionPane.showMessageDialog(null, "Datos de estudiante actualizados");
-               limpiarTabla();
+                st = connection.createStatement();
+                st.executeUpdate(sql);
+
+                JOptionPane.showMessageDialog(null, "Datos de producto actualizados");
+                // Actualizar la tabla después de modificar
+                consultarProductos();
+                // Limpiar los campos después de modificar
+                limpiarCampos();
             }
         } catch (Exception e) {
+            // Manejo de excepciones
         }
-
     }
+
     /**
      * @param args the command line arguments
      */
@@ -339,13 +350,13 @@ public class Estudiantes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Estudiantes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Estudiantes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Estudiantes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Estudiantes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -353,89 +364,117 @@ public class Estudiantes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Estudiantes().setVisible(true);
+                new Productos().setVisible(true);
             }
         });
     }
-    
-    void consultarEstudiantes(){
-        String sql = "select * from estudiantes";
-        
-        try {
-            conet = con1.getConnection();
-            st = conet.createStatement();
-            rs = st.executeQuery(sql);
-            Object[] estudiante = new Object[4];
-            modelo = (DefaultTableModel) Tabla.getModel();
-            while (rs.next()){
-                estudiante [0] = rs.getInt("documento");
-                estudiante [1] = rs.getString("nombre_estudiante");
-                estudiante [2] = rs.getString("apellido_estudiante");
-                estudiante [3] = rs.getString("telefono");
-                
-                modelo.addRow(estudiante);
-            }
-            
-            Tabla.setModel(modelo);
-            
-        } catch (Exception e) {
-        }
-    }
-    
-    void Agregar(){
-        String doc = txtDocumento.getText();
-        String nom = txtNombre.getText();
-        String ape = txtApellido.getText();
-        String tel = txtTelefono.getText();
-        
-        try {
-            if (doc.equals("") || nom.equals("") || ape.equals("") || tel.equals("")){
-                JOptionPane.showMessageDialog(null, "Faltan ingresar datos");
-            } else {
-                
-                String sql = "INSERT INTO estudiantes(documento, nombre_estudiante, apellido_estudiante, telefono) VALUES ('"+doc+"', '"+nom+"', '"+ape+"', '"+tel+"')";
-            conet = con1.getConnection();
-            st = conet.createStatement();
-            st.executeUpdate(sql);
-               JOptionPane.showMessageDialog(null, "Nuevo estudiante registrado");
-               limpiarTabla();
-            }
-        } catch (Exception e) {
-        }
-        
-    }
-    
-    void limpiarTabla(){
-        for (int i = 0; i <= Tabla.getRowCount(); i++) {
-            modelo.removeRow(i);
-            i = i-1;
-        }
-    }
-    
-    public void Eliminar() {
-    String doc = txtDocumento.getText();
+
+    void consultarProductos() {
+    String sql = "SELECT * FROM \"PI2\".productos";
 
     try {
-        if (doc.equals("")) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar el documento del estudiante");
-        } else {
-            String sql = "DELETE FROM estudiantes WHERE documento = '" + doc + "'";
+        st = connection.createStatement();
+        rs = st.executeQuery(sql);
+        
+        // Crear un conjunto para mantener un registro de los identificadores de productos
+        Set<Integer> productosYaAgregados = new HashSet<>();
 
-            conet = con1.getConnection();
-            st = conet.createStatement();
-            st.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, "Estudiante eliminado exitosamente");
-            limpiarTabla();
+        modelo = (DefaultTableModel) Tabla.getModel();
+
+        // Limpiar la tabla antes de actualizarla
+        limpiarCampos();
+
+        while (rs.next()) {
+            int productoid = rs.getInt("productoid");
+
+            // Verificar si el producto ya se agregó para evitar repeticiones
+            if (!productosYaAgregados.contains(productoid)) {
+                Object[] producto = new Object[5];
+                producto[0] = productoid;
+                producto[1] = rs.getString("nombre");
+                producto[2] = rs.getString("descripción");
+                producto[3] = rs.getBigDecimal("precio");
+                producto[4] = rs.getInt("cantidad");
+
+                modelo.addRow(producto);
+
+                // Agregar el identificador del producto al conjunto
+                productosYaAgregados.add(productoid);
+            }
         }
+
+        Tabla.setModel(modelo);
+
     } catch (Exception e) {
+        // Manejo de excepciones
+        e.printStackTrace();
     }
 }
-    
-    void Limpiar(){
-        txtDocumento.setText("");
+
+    void agregarProducto() {
+        String nom = txtNombre.getText();
+        String descri = txtDescri.getText();
+        BigDecimal precio = new BigDecimal(txtPrecio.getText());
+        int cantidad = Integer.parseInt(txtCantidad.getText());
+
+        try {
+            if (nom.equals("") || descri.equals("") || precio.toString().equals("")) {
+                JOptionPane.showMessageDialog(null, "Faltan ingresar datos");
+            } else {
+                // INSERT INTO con valores proporcionados
+                String sql = "INSERT INTO \"PI2\".productos (nombre, descripción, precio, cantidad) VALUES ('" + nom + "', '" + descri + "', " + precio + ", " + cantidad + ")";
+                st = connection.createStatement();
+                st.executeUpdate(sql);
+
+                JOptionPane.showMessageDialog(null, "Nuevo producto registrado");
+                limpiarCampos();
+                // Actualizar la tabla después de agregar
+                consultarProductos();
+                // Limpiar los campos después de agregar
+                limpiarCampos();
+            }
+        } catch (Exception e) {
+                // Manejo de excepciones
+                e.printStackTrace();
+        }
+    }
+
+    void limpiarCampos() {
         txtNombre.setText("");
-        txtApellido.setText("");
-        txtTelefono.setText("");
+        txtDescri.setText("");
+        txtPrecio.setText("");
+        txtCantidad.setText("");
+    }
+
+    void eliminarProducto() {
+        String idProducto = txtId.getText();
+
+        try {
+            if (idProducto.equals("")) {
+                JOptionPane.showMessageDialog(null, "Falta ingresar el ID del producto");
+            } else {
+                // DELETE FROM con el ID del producto proporcionado
+                String sql = "DELETE FROM \"PI2\".productos WHERE productoid = " + idProducto;
+
+                st = connection.createStatement();
+                st.executeUpdate(sql);
+
+                JOptionPane.showMessageDialog(null, "Producto eliminado exitosamente");
+                // Actualizar la tabla después de eliminar
+                consultarProductos();
+                // Limpiar los campos después de eliminar
+                limpiarCampos();
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    void Limpiar() {
+        txtId.setText("");
+        txtNombre.setText("");
+        txtDescri.setText("");
+        txtPrecio.setText("");
+        txtCantidad.setText("");
     }
 
 
@@ -451,13 +490,15 @@ public class Estudiantes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtDocumento;
+    private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtDescri;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 }
