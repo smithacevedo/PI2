@@ -9,16 +9,16 @@ import javax.swing.table.DefaultTableModel;
 import prin.PanelPrincipal;
 import prin.PanelPrincipal;
 
-public class Aulas extends javax.swing.JFrame {
+public class Proveedores extends javax.swing.JFrame {
     
-    Conexion conAulas1 = new Conexion();
+    Conexion conProveedores1 = new Conexion();
     Connection conet;
     DefaultTableModel modelo;
     Statement st;
     ResultSet rs;
     
     
-    public Aulas() {
+    public Proveedores() {
         initComponents();
         setLocationRelativeTo(null);
         consultar();
@@ -291,20 +291,21 @@ public class Aulas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Aulas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Aulas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Aulas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Aulas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Aulas().setVisible(true);
+                new Proveedores().setVisible(true);
             }
         });
     }
@@ -313,7 +314,7 @@ public class Aulas extends javax.swing.JFrame {
         String sql = "select * from aulas";
 
         try {
-            conet = conAulas1.getConnection();
+            conet = conProveedores1.getConnection();
             st = conet.createStatement();
             rs = st.executeQuery(sql);
             Object[] aula = new Object[2];
@@ -341,7 +342,7 @@ public class Aulas extends javax.swing.JFrame {
             } else {
                 
                 String sql = "INSERT INTO aulas(codigo_aula, bloque) VALUES ('"+cod+"', '"+blo+"')";
-            conet = conAulas1.getConnection();
+            conet = conProveedores1.getConnection();
             st = conet.createStatement();
             st.executeUpdate(sql);
                JOptionPane.showMessageDialog(null, "Nueva aula registrada");
@@ -361,7 +362,7 @@ public class Aulas extends javax.swing.JFrame {
         } else {
             String sql = "DELETE FROM aulas WHERE codigo_aula = '" + cod + "'";
 
-            conet = conAulas1.getConnection();
+            conet = conProveedores1.getConnection();
             st = conet.createStatement();
             st.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Aula eliminada exitosamente");
