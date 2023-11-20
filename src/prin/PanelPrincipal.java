@@ -52,7 +52,7 @@ public class PanelPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("AULAS");
+        jButton3.setText("PROVEEDORES");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -92,11 +92,13 @@ public class PanelPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(PanelAdministradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(PanelAdministradorLayout.createSequentialGroup()
+                                .addComponent(jButton5)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(PanelAdministradorLayout.createSequentialGroup()
                                 .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3))
-                            .addComponent(jButton5))
-                        .addContainerGap(80, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3)
+                                .addGap(68, 68, 68))))
                     .addGroup(PanelAdministradorLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -179,8 +181,8 @@ public class PanelPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_RegresarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Aulas aulas = new Aulas();
-        aulas.setVisible(true);
+        Proveedores prove = new Proveedores();
+        prove.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
