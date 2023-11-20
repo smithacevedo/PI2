@@ -372,7 +372,7 @@ public class OrdenesDeCompra extends javax.swing.JFrame {
         String idOrdenCompra = txtIdOrden.getText();
         String fechaCompra = datetime.toString();
         String cantidad = txtCantidad.getText();
-        String precioUnitario = txtProduct.getText();
+        String precioUnitario = txtPrecioUni2.getText();
 
         try {
             if (idOrdenCompra.equals("") || fechaCompra.equals("") || cantidad.equals("") || precioUnitario.equals("")) {

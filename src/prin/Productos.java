@@ -307,7 +307,8 @@ public class Productos extends javax.swing.JFrame {
     }//GEN-LAST:event_RegresarActionPerformed
 
     void modificarProducto() {
-        String idProducto = txtId.getText();
+        
+        Integer idProducto = Integer.parseInt(txtId.getText());
         String nom = txtNombre.getText();
         String descri = txtDescri.getText();
         BigDecimal precio = new BigDecimal(txtPrecio.getText()); // Asumiendo que el precio es un número decimal
@@ -448,10 +449,10 @@ public class Productos extends javax.swing.JFrame {
     }
 
     void eliminarProducto() {
-        String idProducto = txtId.getText();
+        Integer idProducto = Integer.parseInt(txtId.getText());
 
         try {
-            if (idProducto.equals("")) {
+            if (idProducto.toString().equals("")) {
                 JOptionPane.showMessageDialog(null, "Falta ingresar el ID del producto");
             } else {
                 // DELETE FROM con el ID del producto proporcionado

@@ -82,17 +82,6 @@
                       <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-<<<<<<< Updated upstream
-                  <EmptySpace min="193" pref="193" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="txtNombre" min="-2" pref="97" max="-2" attributes="0"/>
-                          <Component id="txtId" min="-2" pref="97" max="-2" attributes="0"/>
-                          <Component id="txtDescri" alignment="1" min="-2" pref="97" max="-2" attributes="0"/>
-                          <Component id="txtPrecio" alignment="1" min="-2" pref="97" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="txtCantidad" alignment="1" min="-2" pref="97" max="-2" attributes="0"/>
-=======
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="txtPrecio" min="-2" pref="97" max="-2" attributes="0"/>
@@ -102,7 +91,6 @@
                           <Component id="txtId" max="32767" attributes="0"/>
                       </Group>
                       <Component id="txtCantidad" min="-2" pref="97" max="-2" attributes="0"/>
->>>>>>> Stashed changes
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
