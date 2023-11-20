@@ -58,7 +58,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ambientes Y Medios"/>
+        <Property name="text" type="java.lang.String" value="Compras"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
@@ -76,17 +76,19 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="IDProveedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="Fechacompra" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="IDcompra" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="Total" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="188" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="txtAmbiente" pref="97" max="32767" attributes="0"/>
-                      <Component id="txtAula" alignment="1" max="32767" attributes="0"/>
-                      <Component id="txtAmbienteMedio" alignment="1" max="32767" attributes="0"/>
+                      <Component id="txtIDCompra" pref="97" max="32767" attributes="0"/>
+                      <Component id="txtFechacompra" alignment="1" max="32767" attributes="0"/>
+                      <Component id="txtIDProveedor" alignment="1" max="32767" attributes="0"/>
+                      <Component id="txtTotal" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="196" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -95,51 +97,72 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="txtAmbiente" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtIDCompra" min="-2" max="-2" attributes="0"/>
+                      <Component id="IDcompra" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtAula" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Fechacompra" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtFechacompra" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtAmbienteMedio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="IDProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtIDProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="51" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="Total" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="IDcompra">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ID Ambiente:"/>
+            <Property name="text" type="java.lang.String" value="ID compra:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="Fechacompra">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Codigo Aula:"/>
+            <Property name="text" type="java.lang.String" value="Fecha compra:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="IDProveedor">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nombre Ambiente:"/>
+            <Property name="text" type="java.lang.String" value="ID Proveedor:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtAmbiente">
+        <Component class="javax.swing.JTextField" name="txtIDCompra">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAmbienteActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIDCompraActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtAula">
+        <Component class="javax.swing.JTextField" name="txtFechacompra">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAulaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFechacompraActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtAmbienteMedio">
+        <Component class="javax.swing.JTextField" name="txtIDProveedor">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIDProveedorActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Total">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Total:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtTotal">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTotalActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
