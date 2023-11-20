@@ -287,6 +287,8 @@ public class Proveedores extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        getAccessibleContext().setAccessibleName("proveedores");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
