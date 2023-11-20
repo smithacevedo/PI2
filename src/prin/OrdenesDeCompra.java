@@ -61,6 +61,7 @@ public class OrdenesDeCompra extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setBackground(new java.awt.Color(204, 204, 255));
         jLabel1.setText("Ordenes De Compra");
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
@@ -252,7 +253,7 @@ public class OrdenesDeCompra extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBackground(new java.awt.Color(204, 204, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("BD"));
 
         Tabla.setBackground(new java.awt.Color(204, 204, 255));
