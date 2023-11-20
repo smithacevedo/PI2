@@ -27,7 +27,7 @@ public class PanelPrincipal extends javax.swing.JFrame {
 
         PanelAdministrador.setBorder(javax.swing.BorderFactory.createTitledBorder("Panel Administrador"));
 
-        jLabel1.setText("Sleccione el módulo al que desea acceder:");
+        jLabel1.setText("Seleccione el módulo al que desea acceder:");
 
         jButton1.setText("USUARIOS");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
