@@ -307,7 +307,7 @@ public class Productos extends javax.swing.JFrame {
     }//GEN-LAST:event_RegresarActionPerformed
 
     void modificarProducto() {
-        
+
         Integer idProducto = Integer.parseInt(txtId.getText());
         String nom = txtNombre.getText();
         String descri = txtDescri.getText();
@@ -331,7 +331,7 @@ public class Productos extends javax.swing.JFrame {
                 limpiarCampos();
             }
         } catch (Exception e) {
-            // Manejo de excepciones
+            JOptionPane.showMessageDialog(null, "ERROR: " + e.getMessage());
         }
     }
 
@@ -372,46 +372,46 @@ public class Productos extends javax.swing.JFrame {
     }
 
     void consultarProductos() {
-    String sql = "SELECT * FROM \"PI2\".productos";
+        String sql = "SELECT * FROM \"PI2\".productos";
 
-    try {
-        st = connection.createStatement();
-        rs = st.executeQuery(sql);
-        
-        // Crear un conjunto para mantener un registro de los identificadores de productos
-        Set<Integer> productosYaAgregados = new HashSet<>();
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery(sql);
 
-        modelo = (DefaultTableModel) Tabla.getModel();
+            // Crear un conjunto para mantener un registro de los identificadores de productos
+            Set<Integer> productosYaAgregados = new HashSet<>();
 
-        // Limpiar la tabla antes de actualizarla
-        limpiarCampos();
+            modelo = (DefaultTableModel) Tabla.getModel();
 
-        while (rs.next()) {
-            int productoid = rs.getInt("productoid");
+            // Limpiar la tabla antes de actualizarla
+            limpiarCampos();
 
-            // Verificar si el producto ya se agregó para evitar repeticiones
-            if (!productosYaAgregados.contains(productoid)) {
-                Object[] producto = new Object[5];
-                producto[0] = productoid;
-                producto[1] = rs.getString("nombre");
-                producto[2] = rs.getString("descripción");
-                producto[3] = rs.getBigDecimal("precio");
-                producto[4] = rs.getInt("cantidad");
+            while (rs.next()) {
+                int productoid = rs.getInt("productoid");
 
-                modelo.addRow(producto);
+                // Verificar si el producto ya se agregó para evitar repeticiones
+                if (!productosYaAgregados.contains(productoid)) {
+                    Object[] producto = new Object[5];
+                    producto[0] = productoid;
+                    producto[1] = rs.getString("nombre");
+                    producto[2] = rs.getString("descripción");
+                    producto[3] = rs.getBigDecimal("precio");
+                    producto[4] = rs.getInt("cantidad");
 
-                // Agregar el identificador del producto al conjunto
-                productosYaAgregados.add(productoid);
+                    modelo.addRow(producto);
+
+                    // Agregar el identificador del producto al conjunto
+                    productosYaAgregados.add(productoid);
+                }
             }
+
+            Tabla.setModel(modelo);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERROR: " + e.getMessage());
+            e.printStackTrace();
         }
-
-        Tabla.setModel(modelo);
-
-    } catch (Exception e) {
-        // Manejo de excepciones
-        e.printStackTrace();
     }
-}
 
     void agregarProducto() {
         String nom = txtNombre.getText();
@@ -436,8 +436,8 @@ public class Productos extends javax.swing.JFrame {
                 limpiarCampos();
             }
         } catch (Exception e) {
-                // Manejo de excepciones
-                e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ERROR: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -468,6 +468,7 @@ public class Productos extends javax.swing.JFrame {
                 limpiarCampos();
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERROR: " + e.getMessage());
         }
     }
 

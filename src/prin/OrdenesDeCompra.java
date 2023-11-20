@@ -386,6 +386,7 @@ public class OrdenesDeCompra extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Orden de compra actualizada");
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERROR: "+ e.getMessage());
             e.printStackTrace();
         }
     }
@@ -460,7 +461,7 @@ public class OrdenesDeCompra extends javax.swing.JFrame {
         Tabla.setModel(modelo);
 
     } catch (Exception e) {
-        // Manejo de excepciones
+        JOptionPane.showMessageDialog(null, "ERROR: "+ e.getMessage());
         e.printStackTrace();
     }
 }
@@ -477,6 +478,7 @@ public class OrdenesDeCompra extends javax.swing.JFrame {
 
         try {
             if (cantidad.toString().equals("") || precioUnitario.equals("")) {
+                
                 JOptionPane.showMessageDialog(null, "Faltan ingresar datos");
             } else {
                 String sql
@@ -488,7 +490,9 @@ public class OrdenesDeCompra extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Nueva orden de compra registrada");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                     JOptionPane.showMessageDialog(null, "ERROR: "+ e.getMessage());
+
+            
         }
     }
 
@@ -514,6 +518,8 @@ public class OrdenesDeCompra extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Orden de compra eliminada exitosamente");
             }
         } catch (Exception e) {
+         JOptionPane.showMessageDialog(null, "ERROR: "+ e.getMessage());
+
             e.printStackTrace();
         }
     }
