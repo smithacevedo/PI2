@@ -20,7 +20,7 @@ public class Compras extends javax.swing.JFrame {
     public Compras() {
         initComponents();
         setLocationRelativeTo(null);
-        consultar();
+        consultarCompra();
     }
 
     LocalDateTime datetime = LocalDateTime.now();
@@ -39,9 +39,9 @@ public class Compras extends javax.swing.JFrame {
         txtIDProveedor = new javax.swing.JTextField();
         Total = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         Agregar = new javax.swing.JButton();
-        Modificar = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
         Limpiar = new javax.swing.JButton();
         Regresar = new javax.swing.JButton();
@@ -53,6 +53,7 @@ public class Compras extends javax.swing.JFrame {
 
         jLabel1.setText("Compras");
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
 
         IDcompra.setText("ID compra:");
@@ -88,6 +89,8 @@ public class Compras extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("(Este campo se registra automáticamente)");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -99,12 +102,14 @@ public class Compras extends javax.swing.JFrame {
                     .addComponent(Fechacompra)
                     .addComponent(IDcompra)
                     .addComponent(Total))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txtIDCompra, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
                     .addComponent(txtFechacompra)
                     .addComponent(txtIDProveedor)
                     .addComponent(txtTotal))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -117,7 +122,8 @@ public class Compras extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Fechacompra)
-                    .addComponent(txtFechacompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFechacompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(IDProveedor)
@@ -129,19 +135,13 @@ public class Compras extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Operaciones"));
 
         Agregar.setText("AGREGAR");
         Agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AgregarActionPerformed(evt);
-            }
-        });
-
-        Modificar.setText("MODIFICAR");
-        Modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ModificarActionPerformed(evt);
             }
         });
 
@@ -174,10 +174,8 @@ public class Compras extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(Agregar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Modificar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Eliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Limpiar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Regresar)
@@ -189,13 +187,13 @@ public class Compras extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Agregar)
-                    .addComponent(Modificar)
                     .addComponent(Eliminar)
                     .addComponent(Limpiar)
                     .addComponent(Regresar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel4.setBackground(new java.awt.Color(204, 204, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("BD"));
 
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
@@ -203,7 +201,7 @@ public class Compras extends javax.swing.JFrame {
 
             },
             new String [] {
-                "documento", "nombre_profesor", "apellido_profesor", "telefono"
+                "compraid", "fechacompra", "proveedorid", "total"
             }
         ));
         Tabla.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -226,8 +224,8 @@ public class Compras extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -273,7 +271,7 @@ public class Compras extends javax.swing.JFrame {
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         Agregar();
-        consultar();
+        consultarCompra();
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void TablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMouseClicked
@@ -282,25 +280,22 @@ public class Compras extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(null, "No se seleccionó ninguna fila");
         } else{
-            int id = Integer.parseInt((String) Tabla.getValueAt(fila, 0) .toString());
-            String aul = (String) Tabla.getValueAt(fila, 1);
-            String amb = (String) Tabla.getValueAt(fila, 2);
+            int compra = Integer.parseInt((String) Tabla.getValueAt(fila, 0) .toString());
+            String fecha = (String) Tabla.getValueAt(fila, 1);
+            int proveedor = Integer.parseInt((String) Tabla.getValueAt(fila, 2) .toString());
+            int total = Integer.parseInt((String) Tabla.getValueAt(fila, 3) .toString());
             
            
-            txtIDCompra.setText(""+ id);
-            txtFechacompra.setText(aul);
-            txtIDProveedor.setText(amb);
+            txtIDCompra.setText(""+ compra);
+            txtFechacompra.setText(fecha);
+            txtIDProveedor.setText(""+ proveedor);
+            txtTotal.setText(""+ total);
         }
     }//GEN-LAST:event_TablaMouseClicked
 
-    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
-        Modificar();
-        consultar();
-    }//GEN-LAST:event_ModificarActionPerformed
-
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         Eliminar();
-        consultar();
+        consultarCompra();
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarActionPerformed
@@ -321,28 +316,6 @@ public class Compras extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTotalActionPerformed
 
-    public void Modificar(){
-        String Compra = txtIDCompra.getText();
-        String fechaCompra = txtFechacompra.getText();
-        String IDProveedor = txtIDProveedor.getText();
-         String Total = txtTotal.getText();
-        try {
-            if (Compra.equals("") || fechaCompra.equals("") || IDProveedor.equals("") || Total.equals("")){
-                JOptionPane.showMessageDialog(null, "Faltan ingresar datos");
-            } else {
-                
-                String sql = "UPDATE Compras SET compra= '" + Compra + "', fecha compra = '" +fechaCompra + "', idproveedor = '" + IDProveedor +"',  Total = '" + Total + "' WHERE idCompra = '" + Compra+"'";
-
-            conet = conCompras1.getConnection();
-            st = conet.createStatement();
-            st.executeUpdate(sql);
-               JOptionPane.showMessageDialog(null, "Datos de Compra actualizados");
-               limpiarTabla();
-            }
-        } catch (Exception e) {
-        }
-
-    }
     /**
      * @param args the command line arguments
      */
@@ -409,8 +382,8 @@ public class Compras extends javax.swing.JFrame {
         });
     }
     
-    void consultar(){
-        String sql = "select * from Compras";
+    void consultarCompra(){
+        String sql = "SELECT * FROM \"PI2\".compras";
         
         try {
             conet = conCompras1.getConnection();
@@ -419,10 +392,10 @@ public class Compras extends javax.swing.JFrame {
             Object[] compras = new Object[4];
             modelo = (DefaultTableModel) Tabla.getModel();
             while (rs.next()){
-                compras [0] = rs.getInt("idcompra");
-                compras [1] = rs.getString("fecha_compra");
-                compras [2] = rs.getString("idprovedor");
-                compras [3] = rs.getString("total");
+                compras [0] = rs.getInt("compraid");
+                compras [1] = rs.getString("fechacompra");
+                compras [2] = rs.getString("proveedorid");
+                compras [3] = rs.getInt("total");
                 
                 modelo.addRow(compras);
             }
@@ -434,17 +407,17 @@ public class Compras extends javax.swing.JFrame {
     }
     
     void Agregar(){
-      Integer idCompras= Integer.parseInt(txtIDCompra.getText());
-        String fechaCompra = txtFechacompra.getText();
-        String IDProveedor = txtIDProveedor.getText();
-         String Total = txtTotal.getText();
-           LocalDateTime fecha = datetime;
+        String compra = txtIDCompra.getText();
+        LocalDateTime fecha = datetime;
+        String proveedor = txtIDProveedor.getText();
+        String total = txtTotal.getText();
+        
         try {
-            if (idCompras.toString().equals("") || IDProveedor.equals("") || Total.equals("")){
+            if (compra.equals("") || proveedor.equals("")|| total.equals("")){
                 JOptionPane.showMessageDialog(null, "Faltan ingresar datos");
             } else {
                 
-                String sql = "INSERT INTO \"PI2\".Compras (compraid, fechacompra, proveedorid, total) VALUES ('"+idCompras+"', '"+fecha+"', '"+IDProveedor+"', '"+Total+"')";
+                String sql = "INSERT INTO \"PI2\".compras (compraid, fechacompra, proveedorid, total) VALUES ('"+compra+"', '"+fecha+"', '"+proveedor+"', '"+total+"')";
             conet = conCompras1.getConnection();
             st = conet.createStatement();
             st.executeUpdate(sql);
@@ -452,7 +425,6 @@ public class Compras extends javax.swing.JFrame {
                limpiarTabla();
             }
         } catch (Exception e) {
-        e.printStackTrace();
         }
        
         
@@ -472,7 +444,7 @@ public class Compras extends javax.swing.JFrame {
         if (Compra.equals("")) {
             JOptionPane.showMessageDialog(null, "Falta ingresar el id de ambiente");
         } else {
-            String sql = "DELETE FROM \"PI2\".Compras WHERE Idcompra = '" + Compra + "'";
+            String sql = "DELETE FROM \"PI2\".compras WHERE compraid = '" + Compra + "'";
 
             conet = conCompras1.getConnection();
             st = conet.createStatement();
@@ -488,6 +460,7 @@ public class Compras extends javax.swing.JFrame {
         txtIDCompra.setText("");
         txtFechacompra.setText("");
         txtIDProveedor.setText("");
+        txtTotal.setText("");
     }
 
 
@@ -498,11 +471,11 @@ public class Compras extends javax.swing.JFrame {
     private javax.swing.JLabel IDProveedor;
     private javax.swing.JLabel IDcompra;
     private javax.swing.JButton Limpiar;
-    private javax.swing.JButton Modificar;
     private javax.swing.JButton Regresar;
     private javax.swing.JTable Tabla;
     private javax.swing.JLabel Total;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
