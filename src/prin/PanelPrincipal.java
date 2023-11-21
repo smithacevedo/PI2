@@ -66,7 +66,7 @@ public class PanelPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("AMBIENTES Y MEDIOS");
+        jButton5.setText("COMPRAS");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -193,8 +193,8 @@ public class PanelPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        OrdenesDeCompra orden = new OrdenesDeCompra();
-        orden.setVisible(true);
+        Compras compras = new Compras();
+        compras.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
